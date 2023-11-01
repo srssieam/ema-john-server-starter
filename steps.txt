@@ -5,3 +5,12 @@
     --> built-in Role > read write > Add user 
 ## Step-3)
     --> Database > collections > create database > INSERT DOCUMENT > view {} > past the json data > Insert
+## Step-4)
+    --> get the total number of documents in a database collection.
+        example:-
+        const count = await productCollection.estimatedDocumentCount();
+
+        (estimatedDocumentCount() is used to estimate the number of documents in a collection
+         without actually fetching and counting all the documents.) estimated = আনুমানিক
+
+    
