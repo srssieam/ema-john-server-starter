@@ -1,0 +1,5 @@
+# step-1) initialized npm
+    --> > npm i
+# step-2) created a new database
+    --> Database Access > Add new database > password > user name > Auto generate secure password > copy > past in .env file
+    --> built-in Role > read write > Add user 
