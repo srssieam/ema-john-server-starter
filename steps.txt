@@ -13,4 +13,11 @@
         (estimatedDocumentCount() is used to estimate the number of documents in a collection
          without actually fetching and counting all the documents.) estimated = আনুমানিক
 
-    
+## Step-5)
+    --> sent page number and itemsPerPages from the client site.
+    --> receive page number and itemsPerPages from the client site.
+    --> get the products according to page number from database,
+        example:-
+        const page = parseInt(req.query.page);  
+        const size = parseInt(req.query.size);
+        const result = await productCollection.find().skip(page * size).limit(size).toArray();
