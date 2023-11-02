@@ -11,7 +11,7 @@ app.use(express.json());
 
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.xjpiwvy.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -42,6 +42,20 @@ async function run() {
     app.get('/productsCount', async (req, res)=>{
       const count = await productCollection.estimatedDocumentCount();
       res.send({count});
+    })
+
+    app.post('/productByIds', async(req, res) => {
+      const ids = req.body;
+      console.log(ids);
+      const idsWithObjectId = ids.map( id => new ObjectId(id));  
+      console.log(idsWithObjectId)
+      const query = {
+        _id: {
+          $in: idsWithObjectId
+        }
+      }
+      const result = await productCollection.find(query).toArray();
+      res.send(result)
     })
 
     // Send a ping to confirm a successful connection

@@ -21,3 +21,22 @@
         const page = parseInt(req.query.page);  
         const size = parseInt(req.query.size);
         const result = await productCollection.find().skip(page * size).limit(size).toArray();
+
+## Step-6)
+    --> get product Ids array from client site:-
+        example:-
+            const ids = req.body;
+            ['36546', '65465', '647916', .....]
+
+    --> Convert product Ids array to new ObjectId("")
+        example:-
+            const idsWithObjectId = ids.map( id => new ObjectId(id)); 
+            [ new ObjectId("36546"), new ObjectId("65465"), new ObjectId("647916"),]
+
+    --> use "$in" operator to filter data from database which have idsWithObjectId
+        example:-
+            const query = {
+                _id: {
+                    $in: idsWithObjectId
+                }
+            }
